@@ -1,0 +1,1964 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>99</ID>
+      <Description>"Enable All Scripts Below"</Description>
+      <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>9</ID>
+          <Description>"Unlimited Stamina"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(stamina,DarkSoulsII.exe,F3 0F 5C CE 0F 2F CA)
+stamina:
+  db 90 90 90 90
+registersymbol(stamina)
+
+[DISABLE]
+stamina:
+  db F3 0F 5C CE
+unregistersymbol(stamina)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>72</ID>
+          <Description>"Unlimited Weapon Durability"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(weapon,DarkSoulsII.exe,F3 42 0F 10 9C C3 94 00 00 00)
+weapon:
+  db F3 0F 10 D8 F3 0F 10 F0 90 90
+registersymbol(weapon)
+
+[DISABLE]
+weapon:
+  db F3 42 0F 10 9C C3 94 00 00 00
+unregistersymbol(weapon)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>98</ID>
+          <Description>"Unlimited Armor Durability"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(armor,DarkSoulsII.exe,F3 42 0F 10 94 C3 BC 02 00 00)
+armor:
+  db F3 0F 10 D0 F3 0F 10 F0 90 90
+registersymbol(armor)
+
+[DISABLE]
+armor:
+  db F3 42 0F 10 94 C3 BC 02 00 00
+unregistersymbol(armor)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>16546</ID>
+          <Description>"Unlimited Ring Durability"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(ring,DarkSoulsII.exe,F3 42 0F 10 94 C3 D8 03 00 00)
+ring:
+  db F3 0F 10 D0 F3 0F 10 F0 90 90
+registersymbol(ring)
+
+[DISABLE]
+ring:
+  db F3 42 0F 10 94 C3 D8 03 00 00
+unregistersymbol(ring)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>37</ID>
+          <Description>"Unlimited Items"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(items,DarkSoulsII.exe,66 29 73 20 48 8B D3)
+items:
+  db 90 90 90 90
+registersymbol(items)
+
+[DISABLE]
+items:
+  db 66 29 73 20
+unregistersymbol(items)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>103</ID>
+          <Description>"Unlimited Items 2"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(items2,DarkSoulsII.exe,0F B6 4F 22 85 C9)
+alloc(newmem,$1000,items2)
+
+label(code)
+label(return)
+
+newmem:
+  cmp byte ptr [rdi+22],0
+  jne code
+  mov ecx,1
+  test ecx,ecx
+  jmp return
+
+code:
+  movzx ecx,byte ptr [rdi+22]
+  test ecx,ecx
+  jmp return
+
+items2:
+  jmp newmem
+  nop
+return:
+registersymbol(items2)
+
+[DISABLE]
+items2:
+  db 0F B6 4F 22 85 C9
+unregistersymbol(items2)
+dealloc(newmem)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>39</ID>
+          <Description>"Unlimited Charges"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(charges,DarkSoulsII.exe,03 F3 8B 4A 24)
+charges:
+  db 90 90
+registersymbol(charges)
+
+[DISABLE]
+charges:
+  db 03 F3
+unregistersymbol(charges)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>94</ID>
+          <Description>"Unlimited Torch"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(torch,DarkSoulsII.exe,F3 0F 5C 44 24 50 C7)
+torch:
+  db 90 90 90 90 90 90
+registersymbol(torch)
+
+[DISABLE]
+torch:
+  db F3 0F 5C 44 24 50
+unregistersymbol(torch)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>24139</ID>
+          <Description>"Unlimited Estus Flask"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(estus,DarkSoulsII.exe,24 8D 51 FF 48 8B CB)
+estus+01:
+  db 8B D1 90
+registersymbol(estus)
+
+[DISABLE]
+estus+01:
+  db 8D 51 FF
+unregistersymbol(estus)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "DarkSoulsII.exe"+1AA8F3
+
+"DarkSoulsII.exe"+1AA8D6: 48 85 C9              -  test rcx,rcx
+"DarkSoulsII.exe"+1AA8D9: 74 28                 -  je DarkSoulsII.exe+1AA903
+"DarkSoulsII.exe"+1AA8DB: 8B 51 14              -  mov edx,[rcx+14]
+"DarkSoulsII.exe"+1AA8DE: 48 8B 03              -  mov rax,[rbx]
+"DarkSoulsII.exe"+1AA8E1: 48 8B CB              -  mov rcx,rbx
+"DarkSoulsII.exe"+1AA8E4: FF 50 48              -  call qword ptr [rax+48]
+"DarkSoulsII.exe"+1AA8E7: 84 C0                 -  test al,al
+"DarkSoulsII.exe"+1AA8E9: 74 18                 -  je DarkSoulsII.exe+1AA903
+"DarkSoulsII.exe"+1AA8EB: 48 8B 43 40           -  mov rax,[rbx+40]
+"DarkSoulsII.exe"+1AA8EF: 0F B6 48 24           -  movzx ecx,byte ptr [rax+24]
+// ---------- INJECTING HERE ----------
+"DarkSoulsII.exe"+1AA8F3: 8D 51 FF              -  lea edx,[rcx-01]
+"DarkSoulsII.exe"+1AA8F6: 48 8B CB              -  mov rcx,rbx
+// ---------- DONE INJECTING  ----------
+"DarkSoulsII.exe"+1AA8F9: 48 83 C4 20           -  add rsp,20
+"DarkSoulsII.exe"+1AA8FD: 5B                    -  pop rbx
+"DarkSoulsII.exe"+1AA8FE: E9 2D 09 00 00        -  jmp DarkSoulsII.exe+1AB230
+"DarkSoulsII.exe"+1AA903: 33 C9                 -  xor ecx,ecx
+"DarkSoulsII.exe"+1AA905: 8D 51 FF              -  lea edx,[rcx-01]
+"DarkSoulsII.exe"+1AA908: 48 8B CB              -  mov rcx,rbx
+"DarkSoulsII.exe"+1AA90B: 48 83 C4 20           -  add rsp,20
+"DarkSoulsII.exe"+1AA90F: 5B                    -  pop rbx
+"DarkSoulsII.exe"+1AA910: E9 1B 09 00 00        -  jmp DarkSoulsII.exe+1AB230
+"DarkSoulsII.exe"+1AA915: 48 83 C4 20           -  add rsp,20
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>109</ID>
+          <Description>"Unlimited Buff Duration"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(buff,DarkSoulsII.exe,F3 0F 5C C1 F3 0F 11 41 20 F3 0F)
+buff:
+  db 90 90 90 90
+registersymbol(buff)
+
+[DISABLE]
+buff:
+  db F3 0F 5C C1
+unregistersymbol(buff)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>22906</ID>
+          <Description>"Animation Override"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(AnimationCancelAOB,DarkSoulsII.exe,41 xx 84 81 xx xx xx xx 41 80)
+registersymbol(AnimationCancelAOB)
+AnimationCancelAOB:
+  db 90 90 90 90 90 90 90 90
+[DISABLE]
+AnimationCancelAOB:
+  db 41 FF 84 81 D0 04 00 00
+unregistersymbol(AnimationCancelAOB)
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>50</ID>
+      <Description>"Unlimited Health"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+aobscanmodule(health,DarkSoulsII.exe,8B 83 68 01 00 00 0F)
+aobscanmodule(damage,DarkSoulsII.exe,2B CE 89 4C 24 30)
+alloc(newmem1,$1000,health)
+alloc(newmem2,$1000,damage)
+alloc(health_ptr,8)
+
+label(code1)
+label(code2)
+label(return1)
+label(return2)
+
+newmem1:
+code1:
+  mov eax,[rbx+00000174]
+  mov qword ptr [health_ptr],rbx
+  //mov [rbx+00000168],eax
+  jmp return1
+health:
+  jmp code1
+  nop
+return1:
+
+newmem2:
+  cmp rbx,qword ptr [health_ptr]
+  jne code2
+  mov [rsp+30],ecx
+  jmp return2
+code2:
+  sub ecx,esi
+  mov [rsp+30],ecx
+  jmp return2
+damage:
+  jmp newmem2
+  nop
+return2:
+
+registersymbol(health)
+registersymbol(health_ptr)
+registersymbol(damage)
+
+[DISABLE]
+health:
+  db 8B 83 68 01 00 00
+damage:
+  db 2B CE 89 4C 24 30
+unregistersymbol(health)
+unregistersymbol(health_ptr)
+unregistersymbol(damage)
+dealloc(newmem1)
+dealloc(newmem2)
+dealloc(health_ptr)
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>269</ID>
+      <Description>"Item Swapper (last item dropped)"</Description>
+      <Options moHideChildren="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+aobscanmodule(itemswap,DarkSoulsII.exe,48 8D 50 40 48 8B C2)
+alloc(newmem,$1000,"DarkSoulsII.exe"+1E05E2)
+alloc(drop_ptr,8)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  lea rdx,[rax+40]
+  mov [drop_ptr],rdx
+  mov rax,rdx
+  jmp return
+
+itemswap:
+  jmp code
+  nop
+  nop
+return:
+registersymbol(itemswap)
+registersymbol(drop_ptr)
+
+[DISABLE]
+itemswap:
+  db 48 8D 50 40 48 8B C2
+unregistersymbol(itemswap)
+unregistersymbol(drop_ptr)
+dealloc(newmem)
+dealloc(drop_ptr)
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>277</ID>
+          <Description>"Drop an item, edit its identifier, and pick it up"</Description>
+          <Color>008000</Color>
+          <GroupHeader>1</GroupHeader>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>270</ID>
+          <Description>"Item ID"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>drop_ptr</Address>
+          <Offsets>
+            <Offset>4</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>271</ID>
+          <Description>"Durability"</Description>
+          <VariableType>Float</VariableType>
+          <Address>drop_ptr</Address>
+          <Offsets>
+            <Offset>8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>272</ID>
+          <Description>"Quantity"</Description>
+          <VariableType>2 Bytes</VariableType>
+          <Address>drop_ptr</Address>
+          <Offsets>
+            <Offset>C</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>275</ID>
+          <Description>"Level"</Description>
+          <DropDownList DescriptionOnly="1" DisplayValueAsItem="1">0:Level 0
+1:Level 1
+2:Level 2
+3:Level 3
+4:Level 4
+5:Level 5
+6:Level 6
+7:Level 7
+8:Level 8
+9:Level 9
+10:Level 10
+</DropDownList>
+          <VariableType>Byte</VariableType>
+          <Address>drop_ptr</Address>
+          <Offsets>
+            <Offset>E</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>274</ID>
+          <Description>"Infusion"</Description>
+          <DropDownList DescriptionOnly="1" DisplayValueAsItem="1">0:None
+1:Fire
+2:Magic
+3:Lightning
+4:Dark
+5:Poison
+6:Bleed
+7:Raw
+8:Enchanted
+9:Mundane
+</DropDownList>
+          <VariableType>Byte</VariableType>
+          <Address>drop_ptr</Address>
+          <Offsets>
+            <Offset>F</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>215</ID>
+      <Description>"Item Editor (highlight an item in the inventory)"</Description>
+      <Options moHideChildren="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+aobscanmodule(item_edit,DarkSoulsII.exe,8B 4A 14 0F B6 C0 66 0F 6E C8 0F 5B C9 E8 9E)
+alloc(newmem,$1000,item_edit)
+alloc(item_edit_ptr,8)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov qword ptr [item_edit_ptr],rdx
+  mov ecx,[rdx+14]
+  movzx eax,al
+  jmp return
+
+item_edit:
+  jmp code
+  nop
+return:
+registersymbol(item_edit)
+registersymbol(item_edit_ptr)
+
+[DISABLE]
+item_edit:
+  db 8B 4A 14 0F B6 C0
+unregistersymbol(item_edit)
+unregistersymbol(item_edit_ptr)
+dealloc(newmem)
+dealloc(item_edit_ptr)
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>230</ID>
+          <Description>"Attributes for Equipment"</Description>
+          <Options moHideChildren="1"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>218</ID>
+              <Description>"Durability"</Description>
+              <VariableType>Float</VariableType>
+              <Address>item_edit_ptr</Address>
+              <Offsets>
+                <Offset>20</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>219</ID>
+              <Description>"Level"</Description>
+              <DropDownList DescriptionOnly="1" DisplayValueAsItem="1">0:Level 0
+1:Level 1
+2:Level 2
+3:Level 3
+4:Level 4
+5:Level 5
+6:Level 6
+7:Level 7
+8:Level 8
+9:Level 9
+10:Level 10
+</DropDownList>
+              <VariableType>Byte</VariableType>
+              <Address>item_edit_ptr</Address>
+              <Offsets>
+                <Offset>25</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>220</ID>
+              <Description>"Infusion"</Description>
+              <DropDownList DescriptionOnly="1" DisplayValueAsItem="1">0:None
+1:Fire
+2:Magic
+3:Lightning
+4:Dark
+5:Poison
+6:Bleed
+7:Raw
+8:Enchanted
+9:Mundane
+</DropDownList>
+              <VariableType>Byte</VariableType>
+              <Address>item_edit_ptr</Address>
+              <Offsets>
+                <Offset>26</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>223</ID>
+              <Description>"Is Broken?"</Description>
+              <DropDownList DescriptionOnly="1" DisplayValueAsItem="1">0:Broken
+255:Not Broken
+</DropDownList>
+              <VariableType>Byte</VariableType>
+              <Address>item_edit_ptr</Address>
+              <Offsets>
+                <Offset>24</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>229</ID>
+          <Description>"Attributes for Consumables"</Description>
+          <Options moHideChildren="1"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>227</ID>
+              <Description>"Quantity"</Description>
+              <ShowAsSigned>1</ShowAsSigned>
+              <VariableType>2 Bytes</VariableType>
+              <Address>item_edit_ptr</Address>
+              <Offsets>
+                <Offset>20</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>228</ID>
+              <Description>"Usage Type"</Description>
+              <DropDownList DescriptionOnly="1" DisplayValueAsItem="1">0:Decrement on Use
+1:Unlimited Use
+2:Replenish at Bonefires
+</DropDownList>
+              <ShowAsSigned>1</ShowAsSigned>
+              <VariableType>Byte</VariableType>
+              <Address>item_edit_ptr</Address>
+              <Offsets>
+                <Offset>22</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>166</ID>
+      <Description>"Equipped Weapons Pointer"</Description>
+      <Options moHideChildren="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+aobscanmodule(weapons,DarkSoulsII.exe,8B 81 6C 01 00 00 4C)
+alloc(newmem,$1000,weapons)
+alloc(weapons_ptr,8)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov qword ptr [weapons_ptr],rcx
+  mov eax,[rcx+0000016C]
+  jmp return
+
+weapons:
+  jmp code
+  nop
+return:
+registersymbol(weapons)
+registersymbol(weapons_ptr)
+
+[DISABLE]
+weapons:
+  db 8B 81 6C 01 00 00
+unregistersymbol(weapons)
+unregistersymbol(weapons_ptr)
+dealloc(newmem)
+dealloc(weapons_ptr)
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>149</ID>
+          <Description>"Left Hand"</Description>
+          <Options moHideChildren="1"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>201</ID>
+              <Description>"Physical Damage"</Description>
+              <VariableType>Float</VariableType>
+              <Address>weapons_ptr</Address>
+              <Offsets>
+                <Offset>0</Offset>
+                <Offset>78</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>185</ID>
+              <Description>"Magic Damage"</Description>
+              <VariableType>Float</VariableType>
+              <Address>weapons_ptr</Address>
+              <Offsets>
+                <Offset>4</Offset>
+                <Offset>78</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>150</ID>
+              <Description>"Dark Damage"</Description>
+              <VariableType>Float</VariableType>
+              <Address>weapons_ptr</Address>
+              <Offsets>
+                <Offset>10</Offset>
+                <Offset>78</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>78</ID>
+              <Description>"Current Durability"</Description>
+              <VariableType>Float</VariableType>
+              <Address>weapons_ptr</Address>
+              <Offsets>
+                <Offset>94</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>80</ID>
+              <Description>"Maximum Durability"</Description>
+              <VariableType>Float</VariableType>
+              <Address>weapons_ptr</Address>
+              <Offsets>
+                <Offset>28</Offset>
+                <Offset>58</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>160</ID>
+              <Description>"Defensive Attributes"</Description>
+              <Options moHideChildren="1"/>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>154</ID>
+                  <Description>"Physical Reduction"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>weapons_ptr</Address>
+                  <Offsets>
+                    <Offset>50</Offset>
+                    <Offset>78</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>155</ID>
+                  <Description>"Magic Reduction"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>weapons_ptr</Address>
+                  <Offsets>
+                    <Offset>54</Offset>
+                    <Offset>78</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>156</ID>
+                  <Description>"Lightning Reduction"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>weapons_ptr</Address>
+                  <Offsets>
+                    <Offset>58</Offset>
+                    <Offset>78</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>157</ID>
+                  <Description>"Fire Reduction"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>weapons_ptr</Address>
+                  <Offsets>
+                    <Offset>5C</Offset>
+                    <Offset>78</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>158</ID>
+                  <Description>"Dark Reduction"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>weapons_ptr</Address>
+                  <Offsets>
+                    <Offset>60</Offset>
+                    <Offset>78</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>161</ID>
+                  <Description>"Poison Reduction"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>weapons_ptr</Address>
+                  <Offsets>
+                    <Offset>64</Offset>
+                    <Offset>78</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>162</ID>
+                  <Description>"Bleed Reduction"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>weapons_ptr</Address>
+                  <Offsets>
+                    <Offset>68</Offset>
+                    <Offset>78</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>163</ID>
+                  <Description>"Petrify Reduction"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>weapons_ptr</Address>
+                  <Offsets>
+                    <Offset>6C</Offset>
+                    <Offset>78</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>164</ID>
+                  <Description>"Curse Reduction"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>weapons_ptr</Address>
+                  <Offsets>
+                    <Offset>70</Offset>
+                    <Offset>78</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>165</ID>
+                  <Description>"Stability"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>weapons_ptr</Address>
+                  <Offsets>
+                    <Offset>74</Offset>
+                    <Offset>78</Offset>
+                  </Offsets>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>187</ID>
+              <Description>"Other"</Description>
+              <Options moHideChildren="1"/>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>188</ID>
+                  <Description>"Base Address"</Description>
+                  <VariableType>2 Bytes</VariableType>
+                  <Address>weapons_ptr</Address>
+                  <Offsets>
+                    <Offset>0</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>16767</ID>
+                  <Description>"Pointer 68"</Description>
+                  <VariableType>2 Bytes</VariableType>
+                  <Address>weapons_ptr</Address>
+                  <Offsets>
+                    <Offset>0</Offset>
+                    <Offset>68</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>191</ID>
+                  <Description>"Pointer 80"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>weapons_ptr</Address>
+                  <Offsets>
+                    <Offset>0</Offset>
+                    <Offset>80</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>189</ID>
+                  <Description>"Int 14"</Description>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>weapons_ptr</Address>
+                  <Offsets>
+                    <Offset>14</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>190</ID>
+                  <Description>"Bool 71"</Description>
+                  <VariableType>Byte</VariableType>
+                  <Address>weapons_ptr</Address>
+                  <Offsets>
+                    <Offset>71</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>192</ID>
+                  <Description>"Bool 71"</Description>
+                  <VariableType>Byte</VariableType>
+                  <Address>weapons_ptr</Address>
+                  <Offsets>
+                    <Offset>37</Offset>
+                  </Offsets>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>167</ID>
+          <Description>"Right Hand"</Description>
+          <Options moHideChildren="1"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>171</ID>
+              <Description>"Physical Damage"</Description>
+              <VariableType>Float</VariableType>
+              <Address>weapons_ptr</Address>
+              <Offsets>
+                <Offset>0</Offset>
+                <Offset>150</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>184</ID>
+              <Description>"Magic Damage"</Description>
+              <VariableType>Float</VariableType>
+              <Address>weapons_ptr</Address>
+              <Offsets>
+                <Offset>4</Offset>
+                <Offset>150</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>172</ID>
+              <Description>"Dark Damage"</Description>
+              <VariableType>Float</VariableType>
+              <Address>weapons_ptr</Address>
+              <Offsets>
+                <Offset>10</Offset>
+                <Offset>150</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>134</ID>
+              <Description>"Current Durability"</Description>
+              <VariableType>Float</VariableType>
+              <Address>weapons_ptr</Address>
+              <Offsets>
+                <Offset>16C</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>135</ID>
+              <Description>"Maximum Durability"</Description>
+              <VariableType>Float</VariableType>
+              <Address>weapons_ptr</Address>
+              <Offsets>
+                <Offset>28</Offset>
+                <Offset>130</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>16797</ID>
+              <Description>"Strength Requirement"</Description>
+              <VariableType>2 Bytes</VariableType>
+              <Address>weapons_ptr</Address>
+              <Offsets>
+                <Offset>18</Offset>
+                <Offset>130</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>173</ID>
+              <Description>"Defensive Attributes"</Description>
+              <Options moHideChildren="1"/>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>174</ID>
+                  <Description>"Physical Reduction"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>weapons_ptr</Address>
+                  <Offsets>
+                    <Offset>50</Offset>
+                    <Offset>150</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>175</ID>
+                  <Description>"Magic Reduction"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>weapons_ptr</Address>
+                  <Offsets>
+                    <Offset>54</Offset>
+                    <Offset>150</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>176</ID>
+                  <Description>"Lightning Reduction"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>weapons_ptr</Address>
+                  <Offsets>
+                    <Offset>58</Offset>
+                    <Offset>150</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>177</ID>
+                  <Description>"Fire Reduction"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>weapons_ptr</Address>
+                  <Offsets>
+                    <Offset>5C</Offset>
+                    <Offset>150</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>178</ID>
+                  <Description>"Dark Reduction"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>weapons_ptr</Address>
+                  <Offsets>
+                    <Offset>60</Offset>
+                    <Offset>150</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>179</ID>
+                  <Description>"Poison Reduction"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>weapons_ptr</Address>
+                  <Offsets>
+                    <Offset>64</Offset>
+                    <Offset>150</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>180</ID>
+                  <Description>"Bleed Reduction"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>weapons_ptr</Address>
+                  <Offsets>
+                    <Offset>68</Offset>
+                    <Offset>150</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>181</ID>
+                  <Description>"Petrify Reduction"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>weapons_ptr</Address>
+                  <Offsets>
+                    <Offset>6C</Offset>
+                    <Offset>150</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>182</ID>
+                  <Description>"Curse Reduction"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>weapons_ptr</Address>
+                  <Offsets>
+                    <Offset>70</Offset>
+                    <Offset>150</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>183</ID>
+                  <Description>"Stability"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>weapons_ptr</Address>
+                  <Offsets>
+                    <Offset>74</Offset>
+                    <Offset>150</Offset>
+                  </Offsets>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>10</ID>
+      <Description>"Player Pointer"</Description>
+      <Options moHideChildren="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+aobscanmodule(player,DarkSoulsII.exe,F3 0F 10 83 AC 01 00 00)
+alloc(newmem,$1000,player)
+alloc(player_ptr,8)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov qword ptr [player_ptr],rbx
+  movss xmm0,[rbx+000001AC]
+  jmp return
+
+player:
+  jmp code
+  nop
+  nop
+  nop
+return:
+registersymbol(player)
+registersymbol(player_ptr)
+
+[DISABLE]
+player:
+  db F3 0F 10 83 AC 01 00 00
+unregistersymbol(player)
+unregistersymbol(player_ptr)
+dealloc(newmem)
+dealloc(player_ptr)
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>12421</ID>
+          <Description>"Name"</Description>
+          <VariableType>String</VariableType>
+          <Length>32</Length>
+          <Unicode>1</Unicode>
+          <CodePage>0</CodePage>
+          <ZeroTerminate>1</ZeroTerminate>
+          <Address>"DarkSoulsII.exe"+0160B8D0</Address>
+          <Offsets>
+            <Offset>24</Offset>
+            <Offset>C0</Offset>
+            <Offset>A8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>12406</ID>
+          <Description>"Timescale"</Description>
+          <VariableType>Float</VariableType>
+          <Address>player_ptr</Address>
+          <Offsets>
+            <Offset>2A8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>81</ID>
+          <Description>"Souls"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>player_ptr</Address>
+          <Offsets>
+            <Offset>EC</Offset>
+            <Offset>490</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>63</ID>
+          <Description>"Soul Memory"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>player_ptr</Address>
+          <Offsets>
+            <Offset>F4</Offset>
+            <Offset>490</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>82</ID>
+          <Description>"Attributes"</Description>
+          <Options moHideChildren="1"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>83</ID>
+              <Description>"Vigor"</Description>
+              <VariableType>2 Bytes</VariableType>
+              <Address>player_ptr</Address>
+              <Offsets>
+                <Offset>8</Offset>
+                <Offset>490</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>84</ID>
+              <Description>"Endurance"</Description>
+              <VariableType>2 Bytes</VariableType>
+              <Address>player_ptr</Address>
+              <Offsets>
+                <Offset>A</Offset>
+                <Offset>490</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>85</ID>
+              <Description>"Vitality"</Description>
+              <VariableType>2 Bytes</VariableType>
+              <Address>player_ptr</Address>
+              <Offsets>
+                <Offset>C</Offset>
+                <Offset>490</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>86</ID>
+              <Description>"Attunement"</Description>
+              <VariableType>2 Bytes</VariableType>
+              <Address>player_ptr</Address>
+              <Offsets>
+                <Offset>E</Offset>
+                <Offset>490</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>87</ID>
+              <Description>"Strength"</Description>
+              <VariableType>2 Bytes</VariableType>
+              <Address>player_ptr</Address>
+              <Offsets>
+                <Offset>10</Offset>
+                <Offset>490</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>88</ID>
+              <Description>"Dexterity"</Description>
+              <VariableType>2 Bytes</VariableType>
+              <Address>player_ptr</Address>
+              <Offsets>
+                <Offset>12</Offset>
+                <Offset>490</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>91</ID>
+              <Description>"Adaptability"</Description>
+              <VariableType>2 Bytes</VariableType>
+              <Address>player_ptr</Address>
+              <Offsets>
+                <Offset>18</Offset>
+                <Offset>490</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>89</ID>
+              <Description>"Intelligence"</Description>
+              <VariableType>2 Bytes</VariableType>
+              <Address>player_ptr</Address>
+              <Offsets>
+                <Offset>14</Offset>
+                <Offset>490</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>90</ID>
+              <Description>"Faith"</Description>
+              <VariableType>2 Bytes</VariableType>
+              <Address>player_ptr</Address>
+              <Offsets>
+                <Offset>16</Offset>
+                <Offset>490</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>92</ID>
+          <Description>"Status"</Description>
+          <Options moHideChildren="1"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>53</ID>
+              <Description>"Current Health"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>player_ptr</Address>
+              <Offsets>
+                <Offset>168</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>47</ID>
+              <Description>"Maximum Health"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>player_ptr</Address>
+              <Offsets>
+                <Offset>174</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>46</ID>
+              <Description>"Current Stamina"</Description>
+              <VariableType>Float</VariableType>
+              <Address>player_ptr</Address>
+              <Offsets>
+                <Offset>1AC</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>14</ID>
+              <Description>"Maximum Stamina"</Description>
+              <VariableType>Float</VariableType>
+              <Address>player_ptr</Address>
+              <Offsets>
+                <Offset>1B4</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>15</ID>
+              <Description>"Current Recovery?"</Description>
+              <VariableType>Float</VariableType>
+              <Address>player_ptr</Address>
+              <Offsets>
+                <Offset>1B8</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>16</ID>
+              <Description>"Maximum Recovery?"</Description>
+              <VariableType>Float</VariableType>
+              <Address>player_ptr</Address>
+              <Offsets>
+                <Offset>1C0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>54</ID>
+              <Description>"Bleeding"</Description>
+              <VariableType>Float</VariableType>
+              <Address>player_ptr</Address>
+              <Offsets>
+                <Offset>1D0</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>16498</ID>
+      <Description>"Target Pointer"</Description>
+      <Options moHideChildren="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+aobscanmodule(target,DarkSoulsII.exe,48 39 BB C0 00 00 00 74)
+alloc(newmem,$1000,target)
+alloc(target_ptr,8)
+alloc(kill_target,1)
+
+label(code)
+label(return)
+
+newmem:
+  cmp byte ptr [kill_target],1
+  jne code
+  mov byte ptr [kill_target],0
+  push rbx
+  mov rbx,[rbx+C0]
+  mov [rbx+168],0
+  pop rbx
+
+code:
+  mov qword ptr [target_ptr],rbx
+  cmp [rbx+000000C0],rdi
+  jmp return
+
+target:
+  jmp newmem
+  nop
+  nop
+return:
+registersymbol(target)
+registersymbol(target_ptr)
+registersymbol(kill_target)
+
+[DISABLE]
+target:
+  db 48 39 BB C0 00 00 00
+unregistersymbol(target)
+unregistersymbol(target_ptr)
+unregistersymbol(kill_target)
+dealloc(newmem)
+dealloc(target_ptr)
+dealloc(kill_target)
+</AssemblerScript>
+      <Hotkeys>
+        <Hotkey>
+          <Action>Toggle Activation</Action>
+          <Keys>
+            <Key>188</Key>
+          </Keys>
+          <ID>0</ID>
+          <ActivateSound TTS="EN">{MRDescription} Activated</ActivateSound>
+          <DeactivateSound TTS="EN">{MRDescription} Deactivated</DeactivateSound>
+        </Hotkey>
+      </Hotkeys>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>16499</ID>
+          <Description>"Kill Target"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+kill_target:
+db 1
+[DISABLE]
+kill_target:
+db 1
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>12135</ID>
+          <Description>"Timescale"</Description>
+          <ShowAsSigned>1</ShowAsSigned>
+          <VariableType>Float</VariableType>
+          <Address>target_ptr</Address>
+          <Offsets>
+            <Offset>2A8</Offset>
+            <Offset>C0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>16500</ID>
+          <Description>"Target Attributes"</Description>
+          <Options moHideChildren="1"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>12130</ID>
+              <Description>"Base"</Description>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>8 Bytes</VariableType>
+              <Address>target_ptr</Address>
+              <Offsets>
+                <Offset>C0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>12131</ID>
+              <Description>"HP"</Description>
+              <ShowAsSigned>1</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>target_ptr</Address>
+              <Offsets>
+                <Offset>168</Offset>
+                <Offset>C0</Offset>
+              </Offsets>
+              <Hotkeys>
+                <Hotkey>
+                  <Action>Toggle Activation</Action>
+                  <Keys>
+                    <Key>186</Key>
+                  </Keys>
+                  <ID>0</ID>
+                  <ActivateSound>Activate</ActivateSound>
+                  <DeactivateSound>Deactivate</DeactivateSound>
+                </Hotkey>
+                <Hotkey>
+                  <Action>Set Value</Action>
+                  <Keys>
+                    <Key>186</Key>
+                  </Keys>
+                  <Value>0</Value>
+                  <ID>1</ID>
+                </Hotkey>
+              </Hotkeys>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>12132</ID>
+              <Description>"Max HP"</Description>
+              <ShowAsSigned>1</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>target_ptr</Address>
+              <Offsets>
+                <Offset>170</Offset>
+                <Offset>C0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>12133</ID>
+              <Description>"Max Hollowed HP"</Description>
+              <ShowAsSigned>1</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>target_ptr</Address>
+              <Offsets>
+                <Offset>174</Offset>
+                <Offset>C0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>12414</ID>
+              <Description>"Stamina"</Description>
+              <VariableType>Float</VariableType>
+              <Address>target_ptr</Address>
+              <Offsets>
+                <Offset>1AC</Offset>
+                <Offset>C0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>12415</ID>
+              <Description>"Max Stamina"</Description>
+              <VariableType>Float</VariableType>
+              <Address>target_ptr</Address>
+              <Offsets>
+                <Offset>1B4</Offset>
+                <Offset>C0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>12416</ID>
+              <Description>"Poison"</Description>
+              <VariableType>Float</VariableType>
+              <Address>target_ptr</Address>
+              <Offsets>
+                <Offset>1C4</Offset>
+                <Offset>C0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>12417</ID>
+              <Description>"Bleeding"</Description>
+              <VariableType>Float</VariableType>
+              <Address>target_ptr</Address>
+              <Offsets>
+                <Offset>1D0</Offset>
+                <Offset>C0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>12418</ID>
+              <Description>"Curse"</Description>
+              <VariableType>Float</VariableType>
+              <Address>target_ptr</Address>
+              <Offsets>
+                <Offset>1E8</Offset>
+                <Offset>C0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>12419</ID>
+              <Description>"Toxic"</Description>
+              <VariableType>Float</VariableType>
+              <Address>target_ptr</Address>
+              <Offsets>
+                <Offset>200</Offset>
+                <Offset>C0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>12420</ID>
+              <Description>"Petrification"</Description>
+              <VariableType>Float</VariableType>
+              <Address>target_ptr</Address>
+              <Offsets>
+                <Offset>20C</Offset>
+                <Offset>C0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>12136</ID>
+              <Description>"Position"</Description>
+              <Options moHideChildren="1"/>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>12137</ID>
+                  <Description>"x1"</Description>
+                  <ShowAsSigned>1</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>target_ptr</Address>
+                  <Offsets>
+                    <Offset>90</Offset>
+                    <Offset>C0</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>12138</ID>
+                  <Description>"x2"</Description>
+                  <ShowAsSigned>1</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>target_ptr</Address>
+                  <Offsets>
+                    <Offset>A0</Offset>
+                    <Offset>C0</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>12142</ID>
+                  <Description>"y1"</Description>
+                  <ShowAsSigned>1</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>target_ptr</Address>
+                  <Offsets>
+                    <Offset>98</Offset>
+                    <Offset>C0</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>12141</ID>
+                  <Description>"y2"</Description>
+                  <ShowAsSigned>1</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>target_ptr</Address>
+                  <Offsets>
+                    <Offset>98</Offset>
+                    <Offset>C0</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>12140</ID>
+                  <Description>"z1"</Description>
+                  <ShowAsSigned>1</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>target_ptr</Address>
+                  <Offsets>
+                    <Offset>94</Offset>
+                    <Offset>C0</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>12139</ID>
+                  <Description>"z2"</Description>
+                  <ShowAsSigned>1</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>target_ptr</Address>
+                  <Offsets>
+                    <Offset>A4</Offset>
+                    <Offset>C0</Offset>
+                  </Offsets>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>16544</ID>
+      <Description>"Change FOV"</Description>
+      <Options moHideChildren="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+aobscanmodule(fov,DarkSoulsII.exe,75 * 8B 87 90 00 00 00 89)
+alloc(newmem,$1000,fov)
+alloc(fov_val,8)
+alloc(fov_ptr,8)
+
+label(code)
+label(return)
+
+fov_val:
+  dd (float)0.7679448724
+
+newmem:
+
+code:
+  //mov eax,[rdi+00000090]
+  mov eax,[fov_val]
+  mov qword ptr [fov_ptr],rdi
+  jmp return
+
+fov+2:
+  jmp code
+  nop
+return:
+registersymbol(fov)
+registersymbol(fov_val)
+registersymbol(fov_ptr)
+
+[DISABLE]
+fov+2:
+  db 8B 87 90 00 00 00
+unregistersymbol(fov)
+unregistersymbol(fov_val)
+unregistersymbol(fov_ptr)
+dealloc(newmem)
+dealloc(fov_val)
+dealloc(fov_ptr)
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>16528</ID>
+          <Description>"FOV Value"</Description>
+          <VariableType>Float</VariableType>
+          <Address>fov_val</Address>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>16802</ID>
+      <Description>"Highlighted Vendor Item"</Description>
+      <Options moHideChildren="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+aobscanmodule(vendor,DarkSoulsII.exe,48 8B 44 24 30 0F B6 4B)
+alloc(newmem,$1000,"DarkSoulsII.exe"+1B6744)
+alloc(vendor_ptr,8)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov qword ptr [vendor_ptr],rbx
+  mov rax,[rsp+30]
+  jmp return
+
+vendor:
+  jmp code
+return:
+registersymbol(vendor)
+registersymbol(vendor_ptr)
+
+[DISABLE]
+vendor:
+  db 48 8B 44 24 30
+unregistersymbol(vendor)
+unregistersymbol(vendor_ptr)
+dealloc(newmem)
+dealloc(vendor_ptr)
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>16804</ID>
+          <Description>"Quantity"</Description>
+          <VariableType>Byte</VariableType>
+          <Address>vendor_ptr</Address>
+          <Offsets>
+            <Offset>23</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>16805</ID>
+          <Description>"Price"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>vendor_ptr</Address>
+          <Offsets>
+            <Offset>1C</Offset>
+          </Offsets>
+          <Hotkeys>
+            <Hotkey>
+              <Action>Toggle Activation</Action>
+              <Keys>
+                <Key>191</Key>
+              </Keys>
+              <ID>0</ID>
+              <ActivateSound>Activate</ActivateSound>
+              <DeactivateSound>Deactivate</DeactivateSound>
+            </Hotkey>
+            <Hotkey>
+              <Action>Set Value</Action>
+              <Keys>
+                <Key>191</Key>
+              </Keys>
+              <Value>1</Value>
+              <ID>1</ID>
+            </Hotkey>
+          </Hotkeys>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>16806</ID>
+          <Description>"Item ID"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>vendor_ptr</Address>
+          <Offsets>
+            <Offset>14</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>16807</ID>
+          <Description>"Item Icon ID"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>vendor_ptr</Address>
+          <Offsets>
+            <Offset>18</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>16803</ID>
+          <Description>"Base"</Description>
+          <VariableType>Byte</VariableType>
+          <Address>vendor_ptr</Address>
+          <Offsets>
+            <Offset>0</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1337036616</ID>
+      <Description>"Lighting and Render Mods"</Description>
+      <Options moHideChildren="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+aobscanmodule(light,DarkSoulsII.exe,8B 43 0C 41 89 40 10 8B 43 10 41 89 40 14 8B 43 14 41 89 40 18 E9)
+alloc(newmem,$1000,light)
+alloc(lightBase,8)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov [lightBase],rbx
+  mov eax,[rbx+0C]
+  mov [r8+10],eax
+  jmp return
+
+light:
+  jmp code
+  nop
+  nop
+return:
+registersymbol(light)
+registersymbol(lightBase)
+
+[DISABLE]
+light:
+  db 8B 43 0C 41 89 40 10
+unregistersymbol(light)
+unregistersymbol(lightBase)
+dealloc(newmem)
+dealloc(lightBase)
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>28916</ID>
+          <Description>"Fog"</Description>
+          <Options moHideChildren="1"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>28919</ID>
+              <Description>"Alpha (0-255, 0 = no fog)"</Description>
+              <VariableType>Byte</VariableType>
+              <Address>lightBase</Address>
+              <Offsets>
+                <Offset>B</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>26476</ID>
+          <Description>"Player Glow"</Description>
+          <Options moHideChildren="1"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>26473</ID>
+              <Description>"Surrounding"</Description>
+              <VariableType>Float</VariableType>
+              <Address>"DarkSoulsII.exe"+160B8D0</Address>
+              <Offsets>
+                <Offset>1C</Offset>
+                <Offset>2B8</Offset>
+                <Offset>670</Offset>
+                <Offset>D0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>26484</ID>
+              <Description>"Player"</Description>
+              <VariableType>Float</VariableType>
+              <Address>"DarkSoulsII.exe"+160B8D0</Address>
+              <Offsets>
+                <Offset>2C</Offset>
+                <Offset>2B8</Offset>
+                <Offset>670</Offset>
+                <Offset>D0</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>Code :mov [rdi+00001520],0000000A</Description>
+      <AddressString>DarkSoulsII.exe+48EC9B</AddressString>
+      <Before>
+        <Byte>83</Byte>
+        <Byte>CE</Byte>
+        <Byte>FF</Byte>
+        <Byte>33</Byte>
+        <Byte>ED</Byte>
+      </Before>
+      <Actual>
+        <Byte>C7</Byte>
+        <Byte>87</Byte>
+        <Byte>20</Byte>
+        <Byte>15</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>0A</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>3B</Byte>
+        <Byte>9F</Byte>
+        <Byte>08</Byte>
+        <Byte>01</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :mov [rdi+00001520],00000008</Description>
+      <AddressString>DarkSoulsII.exe+48EF48</AddressString>
+      <Before>
+        <Byte>8F</Byte>
+        <Byte>60</Byte>
+        <Byte>11</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>C7</Byte>
+        <Byte>87</Byte>
+        <Byte>20</Byte>
+        <Byte>15</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>08</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>FF</Byte>
+        <Byte>50</Byte>
+        <Byte>38</Byte>
+        <Byte>48</Byte>
+        <Byte>8D</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :mov [rdi+00001520],0000000A</Description>
+      <AddressString>DarkSoulsII.exe+48EC9B</AddressString>
+      <Before>
+        <Byte>83</Byte>
+        <Byte>CE</Byte>
+        <Byte>FF</Byte>
+        <Byte>33</Byte>
+        <Byte>ED</Byte>
+      </Before>
+      <Actual>
+        <Byte>C7</Byte>
+        <Byte>87</Byte>
+        <Byte>20</Byte>
+        <Byte>15</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>0A</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>3B</Byte>
+        <Byte>9F</Byte>
+        <Byte>08</Byte>
+        <Byte>01</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :mov [rdi+00001520],00000008</Description>
+      <AddressString>DarkSoulsII.exe+48EF48</AddressString>
+      <Before>
+        <Byte>8F</Byte>
+        <Byte>60</Byte>
+        <Byte>11</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>C7</Byte>
+        <Byte>87</Byte>
+        <Byte>20</Byte>
+        <Byte>15</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>08</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>FF</Byte>
+        <Byte>50</Byte>
+        <Byte>38</Byte>
+        <Byte>48</Byte>
+        <Byte>8D</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols>
+    <SymbolEntry>
+      <Name>playerCoord</Name>
+      <Address>7FFF2A6CB20</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>last_spell</Name>
+      <Address>0044E117</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>req_str1</Name>
+      <Address>01D0537E</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>req_str2</Name>
+      <Address>00356D13</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>req_dex1</Name>
+      <Address>01A9911C</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>req_dex2</Name>
+      <Address>00356D33</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>req_int1</Name>
+      <Address>01BDC98D</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>req_int2</Name>
+      <Address>00356D7E</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>req_fth1</Name>
+      <Address>01BDC995</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>req_fth2</Name>
+      <Address>00356DC1</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>last_bullet</Name>
+      <Address>004482AF</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>name_length</Name>
+      <Address>00523DB0</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>get_name</Name>
+      <Address>00C36F73</Address>
+    </SymbolEntry>
+  </UserdefinedSymbols>
+</CheatTable>
