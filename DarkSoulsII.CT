@@ -1734,53 +1734,37 @@ dealloc(lightBase)
 </AssemblerScript>
       <CheatEntries>
         <CheatEntry>
-          <ID>28916</ID>
+          <ID>28919</ID>
           <Description>"Fog"</Description>
-          <Options moHideChildren="1"/>
-          <GroupHeader>1</GroupHeader>
-          <CheatEntries>
-            <CheatEntry>
-              <ID>28919</ID>
-              <Description>"Alpha (0-255, 0 = no fog)"</Description>
-              <VariableType>Byte</VariableType>
-              <Address>lightBase</Address>
-              <Offsets>
-                <Offset>B</Offset>
-              </Offsets>
-            </CheatEntry>
-          </CheatEntries>
+          <VariableType>Byte</VariableType>
+          <Address>lightBase</Address>
+          <Offsets>
+            <Offset>B</Offset>
+          </Offsets>
         </CheatEntry>
         <CheatEntry>
-          <ID>26476</ID>
+          <ID>26473</ID>
+          <Description>"Surrounding Glow"</Description>
+          <VariableType>Float</VariableType>
+          <Address>"DarkSoulsII.exe"+160B8D0</Address>
+          <Offsets>
+            <Offset>1C</Offset>
+            <Offset>2B8</Offset>
+            <Offset>670</Offset>
+            <Offset>D0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>26484</ID>
           <Description>"Player Glow"</Description>
-          <Options moHideChildren="1"/>
-          <GroupHeader>1</GroupHeader>
-          <CheatEntries>
-            <CheatEntry>
-              <ID>26473</ID>
-              <Description>"Surrounding"</Description>
-              <VariableType>Float</VariableType>
-              <Address>"DarkSoulsII.exe"+160B8D0</Address>
-              <Offsets>
-                <Offset>1C</Offset>
-                <Offset>2B8</Offset>
-                <Offset>670</Offset>
-                <Offset>D0</Offset>
-              </Offsets>
-            </CheatEntry>
-            <CheatEntry>
-              <ID>26484</ID>
-              <Description>"Player"</Description>
-              <VariableType>Float</VariableType>
-              <Address>"DarkSoulsII.exe"+160B8D0</Address>
-              <Offsets>
-                <Offset>2C</Offset>
-                <Offset>2B8</Offset>
-                <Offset>670</Offset>
-                <Offset>D0</Offset>
-              </Offsets>
-            </CheatEntry>
-          </CheatEntries>
+          <VariableType>Float</VariableType>
+          <Address>"DarkSoulsII.exe"+160B8D0</Address>
+          <Offsets>
+            <Offset>2C</Offset>
+            <Offset>2B8</Offset>
+            <Offset>670</Offset>
+            <Offset>D0</Offset>
+          </Offsets>
         </CheatEntry>
       </CheatEntries>
     </CheatEntry>
